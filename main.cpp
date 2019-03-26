@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <vector>
 
-#define DEBUG 
+#define DEBUG false
 
 using namespace std;
 
@@ -25,24 +25,21 @@ class Cell {
     void setIndex(int newIndex) {index = newIndex;}
 };
 
-
-
-bool myfunction (Cell i,Cell j) { return (i.getValue() > j.getValue()); }
+bool cellCompare (Cell i,Cell j) { return (i.getValue() > j.getValue()); }
 
 //--- MAIN ---
-int main (int argc, char* argv[]){
+int main (int argc, char* argv[]) {
 
   int size;
-  vector<vector<Cell> > sorted ;
+  vector<vector<Cell>> sorted ;
   FILE *file;
   file = fopen("./aff1.txt","r+");
 
   fscanf(file, "%d", &size);
 
   // Créer un tableau de "size" par "size" éléments de valeur -1
-  vector<vector<int> > arr (size, vector<int>(size, -1));
-
-  for (int i = 0; i<size; i++){
+  vector<vector<int> > arr (size, vector<int>(size,-1));
+  for (int i = 0; i<size; i++) {
     for (int j = 0; j <size; j++){
       fscanf(file, "%d", &arr[i][j]);
     }
@@ -51,17 +48,14 @@ int main (int argc, char* argv[]){
   //Remonte un vector rerésentant les colonnes d'une ligne de la matrice après l'avoir trié dans un vector de vector représentant la collection des lignes
   //Les valeurs de la première colonne sont donc les maximums
   for (int i=0; i<arr.size(); i++){
-
     vector<Cell> line; // Chaque i est une ligne
     for (int a = 0; a<arr[i].size(); a++) {
       Cell item;
       item.setValue(arr[i][a]);
       item.setIndex(a);
-
       line.push_back(item);
     }
-
-    sort(line.begin(), line.end(), myfunction); 
+    sort(line.begin(), line.end(), cellCompare); 
     sorted.push_back(line);
   }
 
