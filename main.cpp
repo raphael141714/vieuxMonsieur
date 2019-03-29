@@ -1,7 +1,7 @@
-/** ========================= **
- *  Auteur: Mathieu Gardette
+/** =========================================================== **
+ *  Auteur: Joshua Wolfcarius, Raphaël Acisclo Mathieu Gardette
  *  Promotion INFRES 10
- ** ========================= **/
+ ** =========================================================== **/
 
 #include <stdlib.h>
 #include <stdio.h>
