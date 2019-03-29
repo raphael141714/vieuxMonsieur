@@ -29,6 +29,27 @@ class Cell {
     void setIndex(int newIndex) {index = newIndex;}
 };
 
+vector<int> detectDoublons (vector< vector<Cell> > matrix) {
+  vector <int> returned;
+  for (int a = 0; a<(matrix.size()); a++) {
+    int varToTest = a;
+    int b = a;
+    bool continuing = true;
+
+    while ( (b < matrix[a].size() - a) && continuing )  {
+      if (matrix[a][varToTest].getIndex() == matrix[a][b].getIndex()) {
+        returned.push_back(matrix[a][varToTest].getIndex());
+        continuing = false;
+      }
+      b++;
+    }
+
+    if  (returned.size() != a+1) {returned.push_back(-1);}
+  }
+
+  return returned;
+}
+
 bool cellCompare (Cell i,Cell j) { return (i.getValue() > j.getValue()); }
 
 
